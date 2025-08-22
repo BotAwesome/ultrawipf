@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maker Fair Projekte - OpenFFBoard & Floppy Music</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 60px;
+        }
+
+        .main-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 4.5em;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 3px 3px 0px #000000;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.8em;
+            font-weight: 400;
+            color: #b0b0b0;
+            text-shadow: 2px 2px 0px #000000;
+            letter-spacing: 1px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 3px solid #505050;
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #1544cb, #22c55e);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: #808080;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #000000;
+        }
+
+        .project-description {
+            font-size: 1.2em;
+            color: #c0c0c0;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .project-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .feature-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 0.9em;
+            color: #d0d0d0;
+            font-weight: 500;
+        }
+
+        .view-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #1544cb, #22c55e);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .view-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #1e5bff, #16a34a);
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding: 30px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
+            font-size: 1.1em;
+            color: #808080;
+            font-weight: 400;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3em;
+            }
+            
+            .subtitle {
+                font-size: 1.4em;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .project-card {
+                padding: 30px;
+            }
+            
+            .project-title {
+                font-size: 2.2em;
+            }
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            
+            .project-card {
+                border: 2px solid #000000;
+                box-shadow: none;
+            }
+            
+            .view-button {
+                border: 2px solid #000000;
+                background: none;
+                color: #000000;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="main-title">MAKER FAIR PROJEKTE</h1>
+            <p class="subtitle">OpenFFBoard & Floppy Music</p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            <!-- OpenFFBoard Project -->
+            <div class="project-card">
+                <h2 class="project-title">OPENFFBOARD</h2>
+                <p class="project-description">
+                    Ein Open-Source Force Feedback Controller für Gaming und Simulation. 
+                    Das System unterstützt verschiedene Motor-Treiber und bietet eine 
+                    präzise Kraftrückmeldung für immersive Erfahrungen.
+                </p>
+                <div class="project-features">
+                    <span class="feature-tag">Force Feedback</span>
+                    <span class="feature-tag">Open Source</span>
+                    <span class="feature-tag">Gaming</span>
+                    <span class="feature-tag">Simulation</span>
+                </div>
+                <a href="open-ffboard.html" class="view-button">Info Schild anzeigen</a>
+            </div>
+
+            <!-- Floppy Music Project -->
+            <div class="project-card">
+                <h2 class="project-title">FLOPPY MUSIC</h2>
+                <p class="project-description">
+                    Ein einzigartiges Musikinstrument aus 64 Floppy-Laufwerken. 
+                    Jedes Laufwerk wird über MIDI gesteuert und erzeugt charakteristische 
+                    mechanische Töne für polyphone Kompositionen.
+                </p>
+                <div class="project-features">
+                    <span class="feature-tag">64 Floppy-Drives</span>
+                    <span class="feature-tag">MIDI Controller</span>
+                    <span class="feature-tag">Polyphonie</span>
+                    <span class="feature-tag">Arduino Due</span>
+                </div>
+                <a href="floppy-music.html" class="view-button">Info Schild anzeigen</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">
+                Maker Fair Projekte - OpenFFBoard & Floppy Music von Ultrawipf
+            </p>
+        </div>
+    </div>
+</body>
+</html>

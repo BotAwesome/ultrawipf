@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open FFBoard - Info Schild</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .info-sign {
+            width: 420mm;
+            height: 594mm;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 50%, #16213e 100%);
+            border: 4px solid #1544cb;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle Border */
+        .info-sign::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, #1544cb, #3b82f6, #1544cb);
+            z-index: -1;
+        }
+
+        /* Top Banner */
+        .top-banner {
+            background: linear-gradient(90deg, #1e3a8a 0%, #3b82f6 50%, #1e3a8a 100%);
+            padding: 25px 40px;
+            text-align: center;
+            position: relative;
+            border-bottom: 2px solid #60a5fa;
+        }
+
+        .ffboard-logo {
+            max-width: 600px;
+            height: auto;
+            filter: brightness(0) invert(1);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Project Header */
+        .project-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 4.8em;
+            font-weight: 900;
+            color: #e0e0e0;
+            text-shadow: 2px 2px 0px #000000;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .project-subtitle {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.4em;
+            font-weight: 700;
+            color: #b0b0b0;
+            text-shadow: 1px 1px 0px #000000;
+        }
+
+        /* Content Grid */
+        .content-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .content-grid > * {
+            width: 100%;
+        }
+
+        /* Bottom Grid for Tech Specs and Demo Hardware */
+        .bottom-grid {
+            display: flex;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .bottom-grid > * {
+            flex: 1;
+        }
+
+        /* Three Boxes Grid */
+        .three-boxes-grid {
+            display: flex;
+            gap: 25px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .three-boxes-grid > * {
+            flex: 1;
+            width: calc(25% - 17px);
+        }
+
+        /* New Info Boxes */
+        .info-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid #505050;
+            border-radius: 8px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            overflow: hidden;
+        }
+
+        .box-header {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 1px 1px 0px #000000;
+            background: #1544cb;
+            padding: 12px 15px;
+            width: 100%;
+            margin: 0;
+        }
+
+        .box-content {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+
+        /* Left Column - Project Info */
+        .project-info {
+            background: linear-gradient(135deg, rgba(21, 68, 203, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+            border: 2px solid #1544cb;
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+        }
+
+        .project-info h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.4em;
+            color: #dbeafe;
+            margin-bottom: 18px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .project-info p {
+            font-size: 1.4em;
+            color: #c0c0c0;
+            line-height: 1.5;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .project-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Right Column - Technical Specs */
+        .tech-specs {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid #505050;
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+        }
+
+        .tech-specs h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.4em;
+            color: #d0d0d0;
+            margin-bottom: 18px;
+            text-align: center;
+            text-shadow: 1px 1px 0px #000000;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .spec-category {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-align: center;
+            text-shadow: 1px 1px 0px #000000;
+            background: #1544cb;
+            padding: 8px 12px;
+            border-radius: 6px 6px 0 0;
+            width: calc(100% + 30px);
+            margin: -15px -15px 8px -15px;
+        }
+
+        .spec-description {
+            font-size: 1.4em;
+            color: #c0c0c0;
+            font-weight: 400;
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        /* Safety Warning Box */
+        .safety-warning {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border: 2px solid #dc2626;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+            width: 100%;
+            height: fit-content;
+        }
+
+        .safety-warning h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.4em;
+            color: #fecaca;
+            margin-bottom: 18px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .safety-warning p {
+            font-size: 1.4em;
+            color: #fca5a5;
+            line-height: 1.5;
+            margin-bottom: 14px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .safety-warning p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Demo Hardware Box */
+        .demo-hardware {
+            background: rgba(255, 255, 255, 0.03);
+            border: 2px solid #505050;
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            height: calc(fit-content + 20px);
+        }
+
+        .demo-hardware h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.4em;
+            color: #d0d0d0;
+            margin-bottom: 18px;
+            text-align: center;
+            text-shadow: 1px 1px 0px #000000;
+        }
+
+        .demo-hardware p {
+            font-size: 1.4em;
+            color: #c0c0c0;
+            line-height: 1.5;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+
+        .demo-hardware p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Links Box */
+        .links-box {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(22, 163, 74, 0.05) 100%);
+            border: 2px solid #22c55e;
+            border-radius: 8px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+        }
+
+        .links-box h2 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.4em;
+            color: #dcfce7;
+            margin-bottom: 18px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .link-icon {
+            background: #22c55e;
+            color: #ffffff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1.2em;
+            margin-right: 12px;
+            min-width: 120px;
+            text-align: center;
+            text-shadow: none;
+        }
+
+        .link-description {
+            font-size: 1.4em;
+            color: #c0c0c0;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .qr-code {
+            width: 100%;
+            height: auto;
+            max-width: 200px;
+            margin: 0 auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .github-header {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 1px 1px 0px #000000;
+            background: #1544cb;
+            padding: 8px 12px;
+            border-radius: 6px 6px 0 0;
+            width: calc(100% + 30px);
+            margin: -15px -15px 15px -15px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            
+            .info-sign {
+                box-shadow: none;
+                border: 2px solid #000000;
+            }
+
+            .info-sign::before {
+                display: none;
+            }
+        }
+
+        /* Responsive adjustments for different screen sizes */
+        @media screen and (max-width: 1200px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="info-sign">
+        <!-- Top Banner with FFBoard Logo -->
+        <div class="top-banner">
+            <img src="ffboard_logo_blue.svg" alt="Open FFBoard" class="ffboard-logo">
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Project Header -->
+            <div class="project-header">
+                <h1 class="project-title">OPEN FFBOARD</h1>
+                <p class="project-subtitle">Open Source DIY Force Feedback System</p>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="content-grid">
+                <!-- Full Width - Project Info -->
+                <div class="project-info">
+                    <h2>Über das Projekt</h2>
+                    <p>
+                        Open FFBoard ist ein vollständig Open Source entwickeltes Force Feedback System für Simulatoren. 
+                        Es ermöglicht die Erstellung von professionellen Direct Drive Lenkrädern und Joysticks mit 
+                        haptischem Feedback.
+                    </p>
+                    <p>
+                        Das Projekt kombiniert Open Source Hardware und Software als kostengünstige Alternative 
+                        zu kommerziellen Lösungen. Entwickler können das System anpassen und erweitern.
+                    </p>
+                    <p>
+                        Unterstützt werden DC-Motoren, 3-Phasen BLDC-Motoren und Stepper-Motoren mit 
+                        verschiedenen Encodern und Treibern.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bottom Grid for Technical Specs and Demo Hardware -->
+            <div class="bottom-grid">
+                <!-- Technical Specs Box -->
+                <div class="tech-specs">
+                    <h2>Technische Details</h2>
+                    <div class="spec-item">
+                        <div class="spec-category">Motor-Treiber</div>
+                        <div class="spec-description">Custom Trinamic TMC4671<br>Odrive, VESC<br>Granite IONI</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-category">Motoren</div>
+                        <div class="spec-description">DC<br>3-Phasen BLDC<br>Stepper</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-category">Encoder</div>
+                        <div class="spec-description">ABN, SinCos<br>3-Phasen Analog<br>BISS-C, MT6825</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-category">PWM Modi</div>
+                        <div class="spec-description">PWM centered<br>PWM+dir, RC PPM<br>Halfbridge PWM</div>
+                    </div>
+                </div>
+
+                <!-- Demo Hardware Box -->
+                <div class="demo-hardware">
+                    <h2>Demo Simulator Hardware</h2>
+                    <div class="spec-item">
+                        <div class="spec-category">Motor</div>
+                        <div class="spec-description">SEM HR115 + EQN1325 (SinCos)</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-category">Controller</div>
+                        <div class="spec-description">OpenFFBoard TMC4671 driver</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-category">Pedale</div>
+                        <div class="spec-description">Fanatec CS V1 + Loadcell amp</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-category">Netzteil</div>
+                        <div class="spec-description">Meanwell RSP320 48V 320W</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-category">Lenkrad</div>
+                        <div class="spec-description">Turn racing R305 + BP2</div>
+                    </div>
+                    <div class="spec-item">
+                        <div class="spec-category">H-Shifter</div>
+                        <div class="spec-description">Logitech G29</div>
+                    </div>
+                </div>
+            </div>
+
+                            <!-- Three Boxes Grid -->
+            <div class="three-boxes-grid">
+                <!-- Box 1 -->
+                <div class="info-box">
+                    <div class="box-header">
+                        <strong>Projekt GitHub:</strong><br>OpenFFBoard
+                    </div>
+                    <div class="box-content">
+                        <img src="Github-Projekt.png" alt="OpenFFBoard GitHub Projekt QR Code" class="qr-code">
+                    </div>
+                </div>
+
+                <!-- Box 2 -->
+                <div class="info-box">
+                    <div class="box-header">
+                        <strong>GitHub:</strong><br>Ultrawipf
+                    </div>
+                    <div class="box-content">
+                        <img src="Github-Profil.png" alt="Ultrawipf GitHub Profil QR Code" class="qr-code">
+                    </div>
+                </div>
+
+                <!-- Box 3 -->
+                <div class="info-box">
+                    <div class="box-header">
+                        <strong>YouTube:</strong><br>gigawipf
+                    </div>
+                    <div class="box-content">
+                        <img src="YouTube-Profil.png" alt="gigawipf YouTube Profil QR Code" class="qr-code">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Safety Warning Box -->
+            <div class="safety-warning">
+                <h2>⚠️ SICHERHEITSHINWEIS</h2>
+                <p>
+                    <strong>ACHTUNG: Verletzungsgefahr!</strong>
+                </p>
+                <p>
+                    Benutzung ab 16 Jahren auf eigene Verantwortung!
+                </p>
+                <p>
+                    Force Feedback Systeme können starke Kräfte erzeugen. 
+                    Bitte beachten Sie alle Sicherheitsrichtlinien bei der Nutzung.
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+</body>
+</html>

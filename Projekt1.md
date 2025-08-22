@@ -1,0 +1,3 @@
+
+Open FFBoardOpen source DIY Force feedback systemFFB DD Wheels & JoysticksSupported motor drivers:•Custom Trinamic TMC4671 based driver◦Supports DC, 3 phase BLDC, Stepper motors◦ABN encoder, SinCos and 3 phase analog◦BISS-C and MT6825•Odrive via CAN•VESC via CAN•Granite IONI•PWM modes:◦PWM centered, PWM+dir◦RC PPM, Halfbridge PWM GitHub: Ultrawipf/OpenFFBoard
+Open FFBoardOpen source DIY Force feedback systemOpen Source Hardware + SoftwareAchtung: VerletzungsgefahrBenutzung ab 16 Jahren auf eigene Verantwortung!Demo Simulator Hardware:Motor: SEM HR115 + EQN1325 (SinCos)Controller: OpenFFBoard TMC4671 driverPedale: Fanatec CS V1 + Loadcell ampNetzteil: Meanwell RSP320 48V 320WLenkrad: Turn racing R305 + BP2H-Shifter: Logitech G29
